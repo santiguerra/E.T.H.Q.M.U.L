@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCESS_REQUIRED</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- CRT Overlay -->
+    <div class="crt-overlay"></div>
+    <div class="noise-overlay"></div>
+
+    <div class="background-container">
+        <!-- The corrupted bookshelf is set as a background in CSS -->
+    </div>
+
+    <main class="glitch-container">
+        
+        <div class="asymmetric-panel">
+            <!-- Left Side: Retina Biometry -->
+            <div class="retina-container glitch-element" data-text="BIOMETRY_ERROR">
+                <img src="assets/corrupted_retina.png" alt="Corrupted Retina Scan" class="retina-img">
+                <div class="retina-overlay"></div>
+            </div>
+
+            <!-- Center: Terminal Hacking -->
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <span>SYS_ACCESS_CONTROL</span>
+                    <span class="pulse-text-fast">ERROR</span>
+                </div>
+                <div class="terminal-body">
+                    <p class="data-stream">
+                        // RAW_DATA_STREAM: 0x4B2C //_ENTER_IT_ ... [ACCESS_DENIED]<br>
+                        // SYSTEM_INTEGRITY: COMPROMISED<br>
+                        // WAITING_FOR_INPUT...
+                    </p>
+                    <div class="input-line">
+                        <span class="prompt">ann@init:~$ enter_code:</span>
+                        <div class="code-display" id="code-display">
+                            <span class="digit empty">_</span>
+                            <span class="digit empty">_</span>
+                            <span class="digit empty">_</span>
+                            <span class="digit empty">_</span>
+                        </div>
+                    </div>
+                    <button id="access-btn" class="biomech-btn">ACCESS_</button>
+                    <p class="error-msg" id="error-msg">ACCESS DENIED</p>
+                </div>
+            </div>
+
+            <!-- Right Side: G Logo -->
+            <div class="logo-container glitch-element">
+                <img src="assets/fragmented_github_logo.png" alt="Fragmented GitHub Logo" class="logo-img">
+            </div>
+        </div>
+
+        <div class="cryptographic-footer">
+            <p>// RAW_DATA_CORRUPTION: 'W1RISVNJUzIzNTFd...'</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
