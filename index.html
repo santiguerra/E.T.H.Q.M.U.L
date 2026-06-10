@@ -63,6 +63,110 @@
         </div>
     </main>
 
+    <section id="dashboard">
+        <div class="dashboard-inner">
+            <div class="dashboard-header">
+                <span class="pulse-text-fast">■</span>
+                <span>SYSTEM_ACCESS: GRANTED // ann@init:~$</span>
+                <span class="pulse-text-fast">■</span>
+            </div>
+
+            <div class="dashboard-log">
+                <p>&gt; 10 MISSIONS DETECTED</p>
+                <p>&gt; AWAITING DEPLOYMENT<span class="dashboard-cursor">_</span></p>
+            </div>
+
+            <div class="mission-list">
+
+                <div class="mission-row active" data-mission="01">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_01</span>
+                        <span class="mission-status initializing">INITIALIZING...<span class="dashboard-cursor">_</span></span>
+                    </div>
+                    <div class="mission-panel" id="panel-01">
+                        <p class="panel-line">&gt; OBJECTIVE: [REDACTED]</p>
+                        <p class="panel-line">&gt; TARGET: [REDACTED]</p>
+                        <p class="panel-line">&gt; STATUS: AWAITING OPERATOR CONFIRMATION</p>
+                        <p class="panel-line">&gt; ann@init:~$ <span class="dashboard-cursor">_</span></p>
+                    </div>
+                </div>
+
+                <div class="mission-row locked" data-mission="02">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_02</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-02">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="03">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_03</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-03">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="04">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_04</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-04">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="05">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_05</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-05">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="06">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_06</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-06">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="07">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_07</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-07">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="08">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_08</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-08">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="09">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_09</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-09">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+                <div class="mission-row locked" data-mission="10">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_10</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-denied" id="panel-10">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>

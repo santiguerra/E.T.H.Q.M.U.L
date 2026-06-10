@@ -162,10 +162,15 @@ function checkAccess() {
         
         document.querySelector('.background-container').style.animationDuration = '0.2s';
         
-        // Simulating redirect or unlock action
+        // Transition to dashboard
         setTimeout(() => {
-            alert('¡Acceso concedido! Sistema desbloqueado.');
-            // window.location.href = 'https://github.com/santiguerra/E.T.H.Q.M.U.L';
+            const accessScreen = document.querySelector('.glitch-container');
+            const dashboard = document.getElementById('dashboard');
+            accessScreen.classList.add('fade-out');
+            setTimeout(() => {
+                accessScreen.style.display = 'none';
+                dashboard.classList.add('fade-in');
+            }, 600);
         }, 2000);
 
     } else {
@@ -203,6 +208,16 @@ function checkAccess() {
         updateDisplay();
     }
 }
+
+// Mission row click handlers
+document.querySelectorAll('.mission-row').forEach(row => {
+    row.addEventListener('click', () => {
+        const isOpen = row.classList.contains('open');
+        // Close all open rows first
+        document.querySelectorAll('.mission-row.open').forEach(r => r.classList.remove('open'));
+        if (!isOpen) row.classList.add('open');
+    });
+});
 
 // Add blinking cursor effect to prompt
 setInterval(() => {
