@@ -312,7 +312,55 @@
                         <span class="mission-id">MISSION_05</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-05">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-05">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_05 — FELINE_SEARCH</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">█████</span><span class="bar-empty">░░░░░░</span> EASY</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// WARNING: 5 UNITS HAVE BEEN DEPLOYED</p>
+                            <p class="panel-intercept">// EACH UNIT CARRIES A SINGLE CHARACTER</p>
+                            <p class="panel-hint">// FIND THEM. COMBINE THEM. IN ORDER.</p>
+
+                            <div class="unit-list">
+                                <div class="unit-block">
+                                    <span class="unit-id">[UNIT_01]</span>
+                                    <span class="unit-clue">"El aparato que usa tu familia para moler el café cada mañana"</span>
+                                </div>
+                                <div class="unit-block">
+                                    <span class="unit-id">[UNIT_02]</span>
+                                    <span class="unit-clue">"El espacio entre tu colchón y el suelo"</span>
+                                </div>
+                                <div class="unit-block">
+                                    <span class="unit-id">[UNIT_03]</span>
+                                    <span class="unit-clue">"El mueble frente al espejo donde te arreglas"</span>
+                                </div>
+                                <div class="unit-block">
+                                    <span class="unit-id">[UNIT_04]</span>
+                                    <span class="unit-clue">"Dentro o encima de algún peluche de tu cuarto"</span>
+                                </div>
+                                <div class="unit-block">
+                                    <span class="unit-id">[UNIT_05]</span>
+                                    <span class="unit-clue">"Algún lugar dentro del baño"</span>
+                                </div>
+                            </div>
+
+                            <div class="alice-formula">
+                                <p class="panel-intercept">// INSTRUCCIÓN: Cada unidad tiene una letra.</p>
+                                <p class="panel-intercept">// Combínalas en orden: UNIT_01 + UNIT_02 + UNIT_03 + UNIT_04 + UNIT_05</p>
+                                <p class="panel-meta">// FORMAT: 5 caracteres, sin espacios</p>
+                            </div>
+
+                            <div class="panel-input-line">
+                                <label class="panel-prompt" for="mission05-input">ann@init:~$ enter_sequence &gt;&gt;</label>
+                                <input type="text" id="mission05-input" class="mission-input" maxlength="5" placeholder="_____" autocomplete="off" spellcheck="false">
+                            </div>
+                            <button class="mission-submit-btn" id="mission05-submit">[VERIFY_FELINE_SEARCH]</button>
+                            <p class="mission-result" id="mission05-result"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mission-row locked" data-mission="06">

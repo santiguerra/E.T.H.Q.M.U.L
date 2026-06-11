@@ -178,6 +178,7 @@ function checkAccess() {
                 initMission02();
                 initMission03();
                 initMission04();
+                initMission05();
                 applyStoredProgress();
                 updateProgressDisplay();
             }, 600);
@@ -251,6 +252,7 @@ function applyStoredProgress() {
     if (progress['02'] === 'solved') solveMission02(true);
     if (progress['03'] === 'solved') solveMission03(true);
     if (progress['04'] === 'solved') solveMission04(true);
+    if (progress['05'] === 'solved') solveMission05(true);
 }
 
 function solveMission01(silent) {
@@ -412,6 +414,67 @@ function initMission02() {
     });
 
     codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
+}
+
+// --- Mission 05 ---
+const MISSION_05_ANSWER = 'REINA';
+
+function solveMission05(silent) {
+    const row05 = document.querySelector('.mission-row[data-mission="05"]');
+    const row06 = document.querySelector('.mission-row[data-mission="06"]');
+    const status05 = row05.querySelector('.mission-status');
+
+    row05.classList.remove('active');
+    row05.classList.add('solved');
+    status05.className = 'mission-status solved-status';
+    status05.innerHTML = 'DECRYPTED ✓';
+
+    if (row06) {
+        row06.classList.remove('locked');
+        row06.classList.add('active');
+        const status06 = row06.querySelector('.mission-status');
+        status06.className = 'mission-status initializing';
+        status06.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission05-result');
+        result.textContent = '> FELINE_SEARCH: COMPLETE\n> Revisa donde guardas tus marcadores de libros. Hay algo nuevo ahí.\n> MISSION_06 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['05'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission05() {
+    const btn = document.getElementById('mission05-submit');
+    const input = document.getElementById('mission05-input');
+    if (!btn || !input) return;
+
+    const submit = () => {
+        const answer = input.value.trim().toUpperCase();
+        if (!answer) return;
+
+        if (answer === MISSION_05_ANSWER) {
+            input.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.4';
+            solveMission05(false);
+        } else {
+            const result = document.getElementById('mission05-result');
+            result.textContent = '> SEQUENCE_FAILED — INVALID COMBINATION';
+            result.className = 'mission-result fail show';
+            input.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
 }
 
 // --- Mission 04 ---
