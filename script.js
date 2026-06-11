@@ -176,6 +176,7 @@ function checkAccess() {
                 dashboard.classList.add('fade-in');
                 initMission01();
                 initMission02();
+                initMission03();
                 applyStoredProgress();
                 updateProgressDisplay();
             }, 600);
@@ -247,6 +248,7 @@ function applyStoredProgress() {
     const progress = getMissionProgress();
     if (progress['01'] === 'solved') solveMission01(true);
     if (progress['02'] === 'solved') solveMission02(true);
+    if (progress['03'] === 'solved') solveMission03(true);
 }
 
 function solveMission01(silent) {
@@ -408,6 +410,81 @@ function initMission02() {
     });
 
     codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
+}
+
+// --- Mission 03 ---
+const MISSION_03_ANSWER = 'ABRIGO DEFECTOS';
+
+function solveMission03(silent) {
+    const row03 = document.querySelector('.mission-row[data-mission="03"]');
+    const row04 = document.querySelector('.mission-row[data-mission="04"]');
+    const status03 = row03.querySelector('.mission-status');
+
+    row03.classList.remove('active');
+    row03.classList.add('solved');
+    status03.className = 'mission-status solved-status';
+    status03.innerHTML = 'DECRYPTED ✓';
+
+    if (row04) {
+        row04.classList.remove('locked');
+        row04.classList.add('active');
+        const status04 = row04.querySelector('.mission-status');
+        status04.className = 'mission-status initializing';
+        status04.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission03-result');
+        result.textContent = '> FRAGMENT_ANALYSIS: COMPLETE\n> "Así como tú le diste un nuevo brillo a mi vida, quiero que le des ese mismo brillo a este libro."\n> Tu tercer regalo viene en camino. Espéralo.\n> MISSION_04 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['03'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission03() {
+    const btn = document.getElementById('mission03-submit');
+    const finalInput = document.getElementById('mission03-input');
+    const blankB = document.getElementById('blank-b');
+    const blankE = document.getElementById('blank-e');
+    if (!btn || !finalInput) return;
+
+    // Auto-fill passphrase input when both blanks are filled
+    const syncPassphrase = () => {
+        const b = (blankB ? blankB.value.trim() : '');
+        const e = (blankE ? blankE.value.trim() : '');
+        if (b && e) finalInput.value = `${b} ${e}`;
+    };
+
+    if (blankB) blankB.addEventListener('input', syncPassphrase);
+    if (blankE) blankE.addEventListener('input', syncPassphrase);
+
+    const submit = () => {
+        const answer = finalInput.value.trim().toUpperCase();
+        if (!answer) return;
+
+        if (answer === MISSION_03_ANSWER) {
+            finalInput.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.4';
+            if (blankB) blankB.disabled = true;
+            if (blankE) blankE.disabled = true;
+            solveMission03(false);
+        } else {
+            const result = document.getElementById('mission03-result');
+            result.textContent = '> VERIFICATION_FAILED — INCORRECT PASSPHRASE';
+            result.className = 'mission-result fail show';
+            finalInput.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    btn.addEventListener('click', submit);
+    finalInput.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
 }
 
 // Mission row click handlers — only toggle when clicking the .mission-info header

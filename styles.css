@@ -716,6 +716,48 @@ body {
     background: rgba(74, 4, 4, 0.07);
 }
 
+/* Fragment blocks */
+.fragment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fragment-block {
+    border: 1px dashed var(--deep-wine);
+    padding: 12px 16px;
+    background: rgba(74, 4, 4, 0.06);
+}
+
+.fragment-text {
+    color: var(--neon-wine);
+    font-size: 0.9rem;
+    line-height: 1.9;
+    text-shadow: 0 0 3px var(--neon-wine);
+    font-style: italic;
+}
+
+.fragment-blank {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--neon-wine);
+    outline: none;
+    color: var(--rusty-gold);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    font-style: normal;
+    text-shadow: 0 0 5px var(--rusty-gold);
+    width: 100px;
+    text-align: center;
+    padding: 0 4px;
+    vertical-align: baseline;
+}
+
+.fragment-blank:focus {
+    border-bottom-color: var(--rusty-gold);
+    box-shadow: 0 2px 0 var(--rusty-gold);
+}
+
 /* Solved mission row */
 .mission-row.solved .mission-id {
     color: var(--neon-wine);

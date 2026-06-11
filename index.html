@@ -183,7 +183,86 @@
                         <span class="mission-id">MISSION_03</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-03">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-03">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_03 — FRAGMENT ANALYSIS</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">█████████</span><span class="bar-empty">░</span> EXTREME</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// WARNING: 8 FRAGMENTS DETECTED</p>
+                            <p class="panel-intercept">// 6 KNOWN AUTHORS — 2 UNKNOWN ORIGIN</p>
+                            <p class="panel-intercept">// IDENTIFY THE UNKNOWN. COMPLETE THE MISSING WORDS.</p>
+                            <p class="panel-hint">// Las palabras que faltan son tuyas. Búscalas.</p>
+
+                            <div class="fragment-list">
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"Puedo escribir los versos más tristes esta noche.<br>
+                                    Escribir, por ejemplo: la noche está estrellada,<br>
+                                    y tiritan, azules, los astros, a lo lejos."</p>
+                                </div>
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"Me vi tendida en el suelo,<br>
+                                    de aquel cuarto que fue <input type="text" id="blank-b" class="fragment-blank" placeholder="___" autocomplete="off" spellcheck="false">,<br>
+                                    la soledad, como un velo,<br>
+                                    se posó, quedó conmigo."</p>
+                                </div>
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"Y mi alma, de esa sombra que flota en el suelo,<br>
+                                    no podrá liberarse jamás, nunca jamás."</p>
+                                </div>
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"No te rindas, por favor no cedas,<br>
+                                    aunque el frío queme,<br>
+                                    aunque el miedo muerda,<br>
+                                    aunque el sol se esconda."</p>
+                                </div>
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"Ámame sin ver mis <input type="text" id="blank-e" class="fragment-blank" placeholder="___" autocomplete="off" spellcheck="false">,<br>
+                                    ámame sin ver mis heridas,<br>
+                                    solo ámame."</p>
+                                </div>
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"Hombre pequeñito, hombre pequeñito,<br>
+                                    suelta a tu canario que quiere volar,<br>
+                                    yo soy el canario, hombre pequeñito,<br>
+                                    déjame saltar."</p>
+                                </div>
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"Te quiero a las diez de la mañana, y a las once,<br>
+                                    y a las doce del día. Te quiero con toda mi alma<br>
+                                    y con todo mi cuerpo, a veces, en las tardes de lluvia."</p>
+                                </div>
+
+                                <div class="fragment-block">
+                                    <p class="fragment-text">"Somos lo que hacemos para cambiar lo que somos."</p>
+                                </div>
+
+                            </div>
+
+                            <div class="alice-formula">
+                                <p class="panel-intercept">// INSTRUCCIÓN: Identifica los 2 fragmentos de origen desconocido.</p>
+                                <p class="panel-intercept">// Completa las palabras faltantes.</p>
+                                <p class="panel-intercept">// Las palabras faltantes en orden = contraseña.</p>
+                                <p class="panel-meta">// FORMAT: PALABRA1 PALABRA2</p>
+                            </div>
+
+                            <div class="panel-input-line">
+                                <label class="panel-prompt" for="mission03-input">ann@init:~$ enter_passphrase &gt;&gt;</label>
+                                <input type="text" id="mission03-input" class="mission-input" placeholder="___________" autocomplete="off" spellcheck="false">
+                            </div>
+                            <button class="mission-submit-btn" id="mission03-submit">[VERIFY_FRAGMENTS]</button>
+                            <p class="mission-result" id="mission03-result"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mission-row locked" data-mission="04">
