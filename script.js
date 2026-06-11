@@ -177,6 +177,7 @@ function checkAccess() {
                 initMission01();
                 initMission02();
                 initMission03();
+                initMission04();
                 applyStoredProgress();
                 updateProgressDisplay();
             }, 600);
@@ -249,6 +250,7 @@ function applyStoredProgress() {
     if (progress['01'] === 'solved') solveMission01(true);
     if (progress['02'] === 'solved') solveMission02(true);
     if (progress['03'] === 'solved') solveMission03(true);
+    if (progress['04'] === 'solved') solveMission04(true);
 }
 
 function solveMission01(silent) {
@@ -410,6 +412,67 @@ function initMission02() {
     });
 
     codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
+}
+
+// --- Mission 04 ---
+const MISSION_04_ANSWER = 'TE AMO';
+
+function solveMission04(silent) {
+    const row04 = document.querySelector('.mission-row[data-mission="04"]');
+    const row05 = document.querySelector('.mission-row[data-mission="05"]');
+    const status04 = row04.querySelector('.mission-status');
+
+    row04.classList.remove('active');
+    row04.classList.add('solved');
+    status04.className = 'mission-status solved-status';
+    status04.innerHTML = 'DECRYPTED ✓';
+
+    if (row05) {
+        row05.classList.remove('locked');
+        row05.classList.add('active');
+        const status05 = row05.querySelector('.mission-status');
+        status05.className = 'mission-status initializing';
+        status05.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission04-result');
+        result.textContent = '> CAFFENELLA_PROTOCOL: COMPLETE\n> Tu cuarto regalo viene en camino. Espéralo.\n> MISSION_05 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['04'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission04() {
+    const btn = document.getElementById('mission04-submit');
+    const input = document.getElementById('mission04-input');
+    if (!btn || !input) return;
+
+    const submit = () => {
+        const answer = input.value.trim().toUpperCase();
+        if (!answer) return;
+
+        if (answer === MISSION_04_ANSWER) {
+            input.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.4';
+            solveMission04(false);
+        } else {
+            const result = document.getElementById('mission04-result');
+            result.textContent = '> DECRYPTION_FAILED — INVALID MESSAGE';
+            result.className = 'mission-result fail show';
+            input.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
 }
 
 // --- Mission 03 ---
