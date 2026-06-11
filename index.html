@@ -368,7 +368,30 @@
                         <span class="mission-id">MISSION_06</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-06">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-06">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_06 — GOSSIP_PROTOCOL</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">███████</span><span class="bar-empty">░░░</span> MEDIUM</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <div class="gossip-card">
+                                <p class="gossip-text">Spotted: Una reina de Pereira que no sabe que su niño le escondió algo donde menos lo espera.</p>
+                                <p class="gossip-text">Mis fuentes dicen que la respuesta está en las palabras que Chuck nunca pudo decir fácilmente.</p>
+                                <p class="gossip-text">Tres palabras. Ocho letras. Dilo y soy tuya.</p>
+                                <p class="gossip-text">Pero no tan rápido, Upper East Sider... necesito esas tres palabras en el idioma en que las dijo por primera vez, escritas al revés.</p>
+                                <p class="gossip-signature">XOXO, Gossip Girl.</p>
+                            </div>
+
+                            <div class="panel-input-line">
+                                <label class="panel-prompt" for="mission06-input">ann@init:~$ enter_response &gt;&gt;</label>
+                                <input type="text" id="mission06-input" class="mission-input" placeholder="___________" autocomplete="off" spellcheck="false">
+                            </div>
+                            <button class="mission-submit-btn" id="mission06-submit">[VERIFY_GOSSIP_PROTOCOL]</button>
+                            <p class="mission-result" id="mission06-result"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mission-row locked" data-mission="07">
@@ -376,7 +399,50 @@
                         <span class="mission-id">MISSION_07</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-07">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-07">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_07 — ENCRYPTED_LETTER</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">████████</span><span class="bar-empty">░░</span> HIGH</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// WARNING: DOCUMENT INTERCEPTED</p>
+                            <p class="panel-intercept">// 4 WORDS HAVE BEEN REDACTED</p>
+                            <p class="panel-hint">// RECOVER THEM. IN ORDER. FIRST LETTER OF EACH = KEY</p>
+
+                            <div class="letter-doc">
+                                <p class="letter-text">
+                                    "No sé cómo explicar lo que siento cuando estoy contigo.
+                                    Ahora todas las noches sueño contigo, y ese sueño no acaba
+                                    cuando me despierto, pues sigo pensando en ti en cada momento.
+                                    Quiero estar siempre para ti, ya sea celebrando o llorando,
+                                    pero junto a ti. Te has ganado a pulso este papel, ahora eres
+                                    una de las personas más importantes de mi <input type="text" id="blank-l1" class="letter-blank" placeholder="______" autocomplete="off" spellcheck="false" style="width:60px">, y sabes
+                                    algo? No me voy a cansar de decirtelo jamas. Porque cuando uno
+                                    siente amor por una persona se demuestra con hechos, con palabras
+                                    y creyendo ciegamente en lo que el otro ve en ti. Por eso, cuando
+                                    me dices cosas como que soy <input type="text" id="blank-l2" class="letter-blank" placeholder="__________" autocomplete="off" spellcheck="false" style="width:110px"> antes de un parcial, te lo
+                                    creo, porque viniendo de ti significa todo para mi. Quiero ser
+                                    única y <input type="text" id="blank-l3" class="letter-blank" placeholder="______________" autocomplete="off" spellcheck="false" style="width:150px"> para ti. BTW qué vicio fue haber <input type="text" id="blank-l4" class="letter-blank" placeholder="_______" autocomplete="off" spellcheck="false" style="width:80px">
+                                    juntos, tenemos que hacerlo pronto, pero de momento hay que
+                                    vernos con urgencia."
+                                </p>
+                            </div>
+
+                            <div class="alice-formula">
+                                <p class="panel-intercept">// INSTRUCCIÓN: Primera letra de cada palabra recuperada, en orden.</p>
+                                <p class="panel-meta">// FORMAT: 4 caracteres, sin espacios</p>
+                            </div>
+
+                            <div class="panel-input-line">
+                                <label class="panel-prompt" for="mission07-input">ann@init:~$ enter_key &gt;&gt;</label>
+                                <input type="text" id="mission07-input" class="mission-input" maxlength="4" placeholder="____" autocomplete="off" spellcheck="false">
+                            </div>
+                            <button class="mission-submit-btn" id="mission07-submit">[VERIFY_ENCRYPTED_LETTER]</button>
+                            <p class="mission-result" id="mission07-result"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mission-row locked" data-mission="08">

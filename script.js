@@ -179,6 +179,8 @@ function checkAccess() {
                 initMission03();
                 initMission04();
                 initMission05();
+                initMission06();
+                initMission07();
                 applyStoredProgress();
                 updateProgressDisplay();
             }, 600);
@@ -253,6 +255,8 @@ function applyStoredProgress() {
     if (progress['03'] === 'solved') solveMission03(true);
     if (progress['04'] === 'solved') solveMission04(true);
     if (progress['05'] === 'solved') solveMission05(true);
+    if (progress['06'] === 'solved') solveMission06(true);
+    if (progress['07'] === 'solved') solveMission07(true);
 }
 
 function solveMission01(silent) {
@@ -414,6 +418,148 @@ function initMission02() {
     });
 
     codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
+}
+
+// --- Mission 07 ---
+const MISSION_07_ANSWER = 'VIED';
+const LETTER_BLANKS_CORRECT = { 'blank-l1': 'vida', 'blank-l2': 'inteligente', 'blank-l3': 'exclusivamente', 'blank-l4': 'dormido' };
+
+function solveMission07(silent) {
+    const row07 = document.querySelector('.mission-row[data-mission="07"]');
+    const row08 = document.querySelector('.mission-row[data-mission="08"]');
+    const status07 = row07.querySelector('.mission-status');
+
+    row07.classList.remove('active');
+    row07.classList.add('solved');
+    status07.className = 'mission-status solved-status';
+    status07.innerHTML = 'DECRYPTED ✓';
+
+    if (row08) {
+        row08.classList.remove('locked');
+        row08.classList.add('active');
+        const status08 = row08.querySelector('.mission-status');
+        status08.className = 'mission-status initializing';
+        status08.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission07-result');
+        result.textContent = '> ENCRYPTED_LETTER: COMPLETE\n> Tu séptimo regalo viene en camino. Espéralo.\n> MISSION_08 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['07'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission07() {
+    const btn = document.getElementById('mission07-submit');
+    const finalInput = document.getElementById('mission07-input');
+    const blankIds = ['blank-l1', 'blank-l2', 'blank-l3', 'blank-l4'];
+    if (!btn || !finalInput) return;
+
+    const syncKey = () => {
+        const letters = blankIds.map(id => {
+            const el = document.getElementById(id);
+            const val = el ? el.value.trim() : '';
+            return val ? val[0].toUpperCase() : '';
+        });
+        if (letters.every(l => l)) finalInput.value = letters.join('');
+    };
+
+    blankIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', syncKey);
+    });
+
+    const submit = () => {
+        const answer = finalInput.value.trim().toUpperCase();
+        if (!answer) return;
+
+        if (answer === MISSION_07_ANSWER) {
+            finalInput.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.4';
+            blankIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.disabled = true;
+            });
+            solveMission07(false);
+        } else {
+            const result = document.getElementById('mission07-result');
+            result.textContent = '> DECRYPTION_FAILED — INVALID KEY';
+            result.className = 'mission-result fail show';
+            finalInput.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    btn.addEventListener('click', submit);
+    finalInput.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+}
+
+// --- Mission 06 ---
+const MISSION_06_ANSWER = 'UOY EVOL I';
+
+function solveMission06(silent) {
+    const row06 = document.querySelector('.mission-row[data-mission="06"]');
+    const row07 = document.querySelector('.mission-row[data-mission="07"]');
+    const status06 = row06.querySelector('.mission-status');
+
+    row06.classList.remove('active');
+    row06.classList.add('solved');
+    status06.className = 'mission-status solved-status';
+    status06.innerHTML = 'DECRYPTED ✓';
+
+    if (row07) {
+        row07.classList.remove('locked');
+        row07.classList.add('active');
+        const status07 = row07.querySelector('.mission-status');
+        status07.className = 'mission-status initializing';
+        status07.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission06-result');
+        result.textContent = '> GOSSIP_PROTOCOL: COMPLETE\n> Tu sexto regalo viene en camino. Espéralo.\n> MISSION_07 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['06'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission06() {
+    const btn = document.getElementById('mission06-submit');
+    const input = document.getElementById('mission06-input');
+    if (!btn || !input) return;
+
+    const submit = () => {
+        const answer = input.value.trim().toUpperCase();
+        if (!answer) return;
+
+        if (answer === MISSION_06_ANSWER) {
+            input.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.4';
+            solveMission06(false);
+        } else {
+            const result = document.getElementById('mission06-result');
+            result.textContent = '> GOSSIP_PROTOCOL: DENIED — XOXO, TRY AGAIN';
+            result.className = 'mission-result fail show';
+            input.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
 }
 
 // --- Mission 05 ---

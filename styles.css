@@ -716,6 +716,111 @@ body {
     background: rgba(74, 4, 4, 0.07);
 }
 
+/* Intercepted letter document */
+.letter-doc {
+    border: 1px solid var(--rusty-gold);
+    background: rgba(184, 134, 11, 0.04);
+    padding: 20px 24px;
+    box-shadow: 0 0 12px rgba(184, 134, 11, 0.1), inset 0 0 20px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.letter-doc::before {
+    content: '// INTERCEPTED_DOCUMENT — CLASSIFIED';
+    display: block;
+    color: var(--rusty-gold);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    margin-bottom: 12px;
+    text-shadow: 0 0 4px var(--rusty-gold);
+}
+
+.letter-text {
+    color: var(--neon-wine);
+    font-size: 0.88rem;
+    line-height: 2;
+    text-shadow: 0 0 3px var(--neon-wine);
+}
+
+.letter-blank {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--neon-wine);
+    outline: none;
+    color: var(--rusty-gold);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.88rem;
+    font-style: normal;
+    text-shadow: 0 0 5px var(--rusty-gold);
+    text-align: center;
+    padding: 0 2px;
+    vertical-align: baseline;
+}
+
+.letter-blank:focus {
+    border-bottom-color: var(--rusty-gold);
+    box-shadow: 0 2px 0 var(--rusty-gold);
+}
+
+.letter-blank:disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+/* Gossip Girl card */
+#panel-06 .gossip-card {
+    background: #f5f0e8;
+    color: #2c2c2c;
+    font-family: Georgia, 'Times New Roman', serif;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    border: none;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+#panel-06 .gossip-card::before {
+    content: '✦ GOSSIP GIRL ✦';
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: #8b7355;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+}
+
+#panel-06 .gossip-card::after {
+    content: '— Upper East Side, N.Y. —';
+    display: block;
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: #8b7355;
+    margin-top: 20px;
+    font-family: Georgia, serif;
+}
+
+.gossip-text {
+    color: #2c2c2c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem;
+    line-height: 1.85;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.gossip-signature {
+    color: #2c2c2c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    text-align: center;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
 /* Unit blocks */
 .unit-list {
     display: flex;
