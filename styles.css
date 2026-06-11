@@ -402,8 +402,11 @@ body {
 
 .mission-row {
     border: 1px solid var(--deep-wine);
-    cursor: pointer;
     transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mission-info {
+    cursor: pointer;
 }
 
 .mission-row.active {
@@ -493,6 +496,259 @@ body {
 @keyframes line-appear {
     from { opacity: 0; transform: translateX(-8px); }
     to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Mission panel content */
+.panel-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--deep-wine);
+}
+
+.panel-title {
+    color: var(--rusty-gold);
+    font-size: 0.95rem;
+    text-shadow: 0 0 8px var(--rusty-gold);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.panel-meta {
+    color: var(--neon-wine);
+    font-size: 0.8rem;
+    line-height: 1.8;
+    opacity: 0.85;
+}
+
+.bar-filled {
+    color: var(--neon-wine);
+    text-shadow: 0 0 4px var(--neon-wine);
+}
+
+.bar-empty {
+    color: var(--deep-wine);
+}
+
+.panel-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.panel-intercept {
+    color: var(--neon-wine);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.panel-cipher {
+    color: var(--neon-wine);
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    text-shadow: 0 0 8px var(--neon-wine);
+    padding: 10px 0;
+    border-top: 1px solid var(--deep-wine);
+    border-bottom: 1px solid var(--deep-wine);
+}
+
+.panel-hint {
+    color: var(--rusty-gold);
+    font-size: 0.8rem;
+    text-shadow: 0 0 5px var(--rusty-gold);
+    opacity: 0.9;
+}
+
+.panel-input-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.panel-prompt {
+    color: var(--rusty-gold);
+    font-size: 0.85rem;
+    text-shadow: 0 0 5px var(--rusty-gold);
+    white-space: nowrap;
+}
+
+.mission-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--neon-wine);
+    outline: none;
+    color: var(--neon-wine);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.95rem;
+    text-shadow: 0 0 5px var(--neon-wine);
+    padding: 4px 6px;
+    width: 180px;
+    letter-spacing: 2px;
+}
+
+.mission-input::placeholder {
+    color: var(--deep-wine);
+    opacity: 0.8;
+}
+
+.mission-input:focus {
+    border-bottom-color: var(--rusty-gold);
+    text-shadow: 0 0 8px var(--rusty-gold);
+    color: var(--rusty-gold);
+}
+
+.mission-submit-btn {
+    background: transparent;
+    border: 1px solid var(--neon-wine);
+    color: var(--neon-wine);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px var(--neon-wine);
+    transition: all 0.2s;
+    align-self: flex-start;
+}
+
+.mission-submit-btn:hover {
+    background: rgba(255, 26, 60, 0.1);
+    border-color: var(--rusty-gold);
+    color: var(--rusty-gold);
+    text-shadow: 0 0 8px var(--rusty-gold);
+    box-shadow: 0 0 12px rgba(184, 134, 11, 0.2);
+}
+
+.mission-result {
+    font-size: 0.82rem;
+    line-height: 1.9;
+    opacity: 0;
+    transition: opacity 0.4s;
+    white-space: pre-line;
+}
+
+.mission-result.show {
+    opacity: 1;
+}
+
+.mission-result.success {
+    color: var(--neon-wine);
+    text-shadow: 0 0 6px var(--neon-wine);
+}
+
+.mission-result.fail {
+    color: #ff0000;
+    text-shadow: 0 0 6px #ff0000;
+    animation: flash-error 0.4s 2;
+}
+
+/* Alice Protocol questions */
+.alice-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 4px 0;
+}
+
+.alice-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(74, 4, 4, 0.4);
+}
+
+.alice-row label {
+    color: var(--neon-wine);
+    font-size: 0.82rem;
+    text-shadow: 0 0 3px var(--neon-wine);
+    flex: 1;
+}
+
+.alice-row.incorrect label {
+    color: #ff0000;
+    text-shadow: 0 0 5px #ff0000;
+}
+
+.alice-row.correct label {
+    color: var(--neon-wine);
+    opacity: 0.5;
+}
+
+.alice-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--neon-wine);
+    outline: none;
+    color: var(--neon-wine);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    text-shadow: 0 0 4px var(--neon-wine);
+    width: 54px;
+    text-align: center;
+    padding: 2px 4px;
+    -moz-appearance: textfield;
+}
+
+.alice-input::-webkit-inner-spin-button,
+.alice-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.alice-input:focus {
+    border-bottom-color: var(--rusty-gold);
+    color: var(--rusty-gold);
+    text-shadow: 0 0 6px var(--rusty-gold);
+}
+
+.alice-input:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.alice-formula {
+    border: 1px dashed var(--deep-wine);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(74, 4, 4, 0.07);
+}
+
+/* Solved mission row */
+.mission-row.solved .mission-id {
+    color: var(--neon-wine);
+    text-shadow: 0 0 5px var(--neon-wine);
+}
+
+.mission-status.solved-status {
+    color: var(--neon-wine);
+    text-shadow: 0 0 5px var(--neon-wine);
+    opacity: 0.7;
+}
+
+/* Progress bar */
+.dashboard-progress {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: var(--rusty-gold);
+    text-shadow: 0 0 5px var(--rusty-gold);
+}
+
+#progress-filled {
+    color: var(--rusty-gold);
+    text-shadow: 0 0 6px var(--rusty-gold);
+}
+
+#progress-empty {
+    color: var(--deep-wine);
+    opacity: 0.5;
+}
+
+#progress-count {
+    color: var(--rusty-gold);
 }
 
 /* Responsive */

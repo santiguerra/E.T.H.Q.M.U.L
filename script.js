@@ -169,7 +169,15 @@ function checkAccess() {
             accessScreen.classList.add('fade-out');
             setTimeout(() => {
                 accessScreen.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.body.style.height = 'auto';
+                document.body.style.alignItems = 'flex-start';
+                document.body.style.paddingTop = '40px';
                 dashboard.classList.add('fade-in');
+                initMission01();
+                initMission02();
+                applyStoredProgress();
+                updateProgressDisplay();
             }, 600);
         }, 2000);
 
@@ -209,11 +217,205 @@ function checkAccess() {
     }
 }
 
-// Mission row click handlers
+// --- Mission system ---
+const MISSION_01_ANSWER = 'TODO EMPIEZA AQUI';
+const PROGRESS_KEY = 'mission_progress';
+
+function getMissionProgress() {
+    try {
+        return JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {};
+    } catch { return {}; }
+}
+
+function saveMissionProgress(data) {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(data));
+}
+
+function updateProgressDisplay() {
+    const progress = getMissionProgress();
+    const solved = Object.values(progress).filter(v => v === 'solved').length;
+    const filled = document.getElementById('progress-filled');
+    const empty = document.getElementById('progress-empty');
+    const count = document.getElementById('progress-count');
+    if (!filled || !empty || !count) return;
+    filled.textContent = '█'.repeat(solved);
+    empty.textContent = '░'.repeat(10 - solved);
+    count.textContent = `${solved}/10`;
+}
+
+function applyStoredProgress() {
+    const progress = getMissionProgress();
+    if (progress['01'] === 'solved') solveMission01(true);
+    if (progress['02'] === 'solved') solveMission02(true);
+}
+
+function solveMission01(silent) {
+    const row01 = document.querySelector('.mission-row[data-mission="01"]');
+    const row02 = document.querySelector('.mission-row[data-mission="02"]');
+    const status01 = row01.querySelector('.mission-status');
+
+    row01.classList.remove('active');
+    row01.classList.add('solved');
+    status01.className = 'mission-status solved-status';
+    status01.innerHTML = 'DECRYPTED ✓';
+
+    if (row02) {
+        row02.classList.remove('locked');
+        row02.classList.add('active');
+        const status02 = row02.querySelector('.mission-status');
+        status02.className = 'mission-status initializing';
+        status02.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission01-result');
+        result.textContent = '> DECRYPTION_SUCCESSFUL\n> Tu primer regalo está donde el agua hierve pero no se toma sola.\n> MISSION_02 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['01'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+// Mission 01 submit logic
+function initMission01() {
+    const input = document.getElementById('mission01-input');
+    const btn = document.getElementById('mission01-submit');
+    if (!input || !btn) return;
+
+    const submit = () => {
+        const answer = input.value.trim().toUpperCase();
+        if (!answer) return;
+
+        if (answer === MISSION_01_ANSWER) {
+            input.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.4';
+            solveMission01(false);
+        } else {
+            const result = document.getElementById('mission01-result');
+            result.textContent = '> DECRYPTION_FAILED — INVALID KEY';
+            result.className = 'mission-result fail show';
+            input.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+}
+
+// --- Mission 02 ---
+const ALICE_ANSWERS = [3, 6, 12, 2, 5, 4, 1, 10];
+const MISSION_02_CODE = '2114';
+
+function solveMission02(silent) {
+    const row02 = document.querySelector('.mission-row[data-mission="02"]');
+    const row03 = document.querySelector('.mission-row[data-mission="03"]');
+    const status02 = row02.querySelector('.mission-status');
+
+    row02.classList.remove('active');
+    row02.classList.add('solved');
+    status02.className = 'mission-status solved-status';
+    status02.innerHTML = 'DECRYPTED ✓';
+
+    if (row03) {
+        row03.classList.remove('locked');
+        row03.classList.add('active');
+        const status03 = row03.querySelector('.mission-status');
+        status03.className = 'mission-status initializing';
+        status03.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission02-result');
+        result.textContent = '> ALICE_PROTOCOL: COMPLETE\n> Tu segundo regalo viene en camino. Espéralo.\n> MISSION_03 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['02'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission02() {
+    const submitBtn = document.getElementById('mission02-submit');
+    const codeInput = document.getElementById('mission02-code');
+    const aliceInputs = document.querySelectorAll('.alice-input');
+    const questionsResult = document.getElementById('alice-questions-result');
+    const missionResult = document.getElementById('mission02-result');
+    if (!submitBtn) return;
+
+    let questionsVerified = false;
+
+    const verifyQuestions = () => {
+        const rows = document.querySelectorAll('.alice-row');
+        const wrong = [];
+
+        aliceInputs.forEach((input, i) => {
+            const val = parseInt(input.value, 10);
+            const row = rows[i];
+            if (val === ALICE_ANSWERS[i]) {
+                row.classList.remove('incorrect');
+                row.classList.add('correct');
+            } else {
+                row.classList.remove('correct');
+                row.classList.add('incorrect');
+                wrong.push(`R${i + 1}`);
+            }
+        });
+
+        if (wrong.length > 0) {
+            questionsResult.textContent = `> ERROR: ${wrong.join(', ')} — INCORRECT DATA`;
+            questionsResult.className = 'mission-result fail show';
+            return false;
+        }
+
+        questionsResult.textContent = '> DATA_VERIFIED — ENTER FORMULA CODE';
+        questionsResult.className = 'mission-result success show';
+        aliceInputs.forEach(i => { i.disabled = true; });
+        questionsVerified = true;
+        codeInput.focus();
+        return true;
+    };
+
+    const verifyCode = () => {
+        if (!questionsVerified) {
+            if (!verifyQuestions()) return;
+        }
+        const code = String(codeInput.value).trim();
+        if (code === MISSION_02_CODE) {
+            codeInput.disabled = true;
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.4';
+            solveMission02(false);
+        } else {
+            missionResult.textContent = '> DECRYPTION_FAILED — INVALID CODE';
+            missionResult.className = 'mission-result fail show';
+            codeInput.value = '';
+            setTimeout(() => { missionResult.classList.remove('show'); }, 2000);
+        }
+    };
+
+    submitBtn.addEventListener('click', () => {
+        if (!questionsVerified) { verifyQuestions(); return; }
+        verifyCode();
+    });
+
+    codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
+}
+
+// Mission row click handlers — only toggle when clicking the .mission-info header
 document.querySelectorAll('.mission-row').forEach(row => {
-    row.addEventListener('click', () => {
+    const info = row.querySelector('.mission-info');
+    if (!info) return;
+    info.addEventListener('click', () => {
         const isOpen = row.classList.contains('open');
-        // Close all open rows first
         document.querySelectorAll('.mission-row.open').forEach(r => r.classList.remove('open'));
         if (!isOpen) row.classList.add('open');
     });

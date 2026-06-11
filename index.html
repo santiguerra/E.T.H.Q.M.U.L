@@ -71,6 +71,8 @@
                 <span class="pulse-text-fast">■</span>
             </div>
 
+            <p class="dashboard-progress">MISSION_PROGRESS [<span id="progress-filled"></span><span id="progress-empty">░░░░░░░░░░</span>] <span id="progress-count">0/10</span></p>
+
             <div class="dashboard-log">
                 <p>&gt; 10 MISSIONS DETECTED</p>
                 <p>&gt; AWAITING DEPLOYMENT<span class="dashboard-cursor">_</span></p>
@@ -84,10 +86,23 @@
                         <span class="mission-status initializing">INITIALIZING...<span class="dashboard-cursor">_</span></span>
                     </div>
                     <div class="mission-panel" id="panel-01">
-                        <p class="panel-line">&gt; OBJECTIVE: [REDACTED]</p>
-                        <p class="panel-line">&gt; TARGET: [REDACTED]</p>
-                        <p class="panel-line">&gt; STATUS: AWAITING OPERATOR CONFIRMATION</p>
-                        <p class="panel-line">&gt; ann@init:~$ <span class="dashboard-cursor">_</span></p>
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_01 — VIGENÈRE CIPHER</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">████████</span><span class="bar-empty">░░</span> HIGH</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// RAW_INTERCEPTED_MESSAGE:</p>
+                            <p class="panel-cipher">ICHD SQEWIOOE PEYX</p>
+                            <p class="panel-hint">// HINT: La clave la tiene el autor que te enseñó que el corazón nunca calla.</p>
+                            <div class="panel-input-line">
+                                <label class="panel-prompt" for="mission01-input">ann@init:~$ decrypt &gt;&gt;</label>
+                                <input type="text" id="mission01-input" class="mission-input" placeholder="_______" autocomplete="off" spellcheck="false">
+                            </div>
+                            <button class="mission-submit-btn" id="mission01-submit">[SUBMIT_DECRYPT]</button>
+                            <p class="mission-result" id="mission01-result"></p>
+                        </div>
                     </div>
                 </div>
 
@@ -96,7 +111,71 @@
                         <span class="mission-id">MISSION_02</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-02">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-02">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_02 — ALICE PROTOCOL</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">██████████</span> EXTREME</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// DATA_SOURCE: CLASSIFIED_ANIMATION_1951</p>
+                            <p class="panel-intercept">// WARNING: OBSERVATION REQUIRED</p>
+                            <p class="panel-hint">// Las respuestas están en el origen. Busca bien.</p>
+
+                            <div class="alice-questions" id="alice-questions">
+                                <div class="alice-row">
+                                    <label>[R1] ¿Cuántos naipes pintaban las rosas en el jardín?</label>
+                                    <input type="number" class="alice-input" data-r="1" min="0">
+                                </div>
+                                <div class="alice-row">
+                                    <label>[R2] ¿Qué hora marcaba siempre el reloj del Sombrerero?</label>
+                                    <input type="number" class="alice-input" data-r="2" min="0">
+                                </div>
+                                <div class="alice-row">
+                                    <label>[R3] ¿Cuántas patas tiene la Oruga azul?</label>
+                                    <input type="number" class="alice-input" data-r="3" min="0">
+                                </div>
+                                <div class="alice-row">
+                                    <label>[R4] ¿Cuántos colores tiene el vestido de Alicia?</label>
+                                    <input type="number" class="alice-input" data-r="4" min="0">
+                                </div>
+                                <div class="alice-row">
+                                    <label>[R5] ¿Cuántos soldados forman la guardia de la Reina?</label>
+                                    <input type="number" class="alice-input" data-r="5" min="0">
+                                </div>
+                                <div class="alice-row">
+                                    <label>[R6] ¿Cuántos terrones de azúcar le ofrecen a Alicia?</label>
+                                    <input type="number" class="alice-input" data-r="6" min="0">
+                                </div>
+                                <div class="alice-row">
+                                    <label>[R7] ¿En qué capítulo del libro original cae Alicia?</label>
+                                    <input type="number" class="alice-input" data-r="7" min="0">
+                                </div>
+                                <div class="alice-row">
+                                    <label>[R8] ¿Cuántas veces cambia Alicia de tamaño en la película?</label>
+                                    <input type="number" class="alice-input" data-r="8" min="0">
+                                </div>
+                            </div>
+
+                            <p class="mission-result" id="alice-questions-result"></p>
+
+                            <div class="alice-formula">
+                                <p class="panel-intercept">// FORMULA_DECRYPT:</p>
+                                <p class="panel-meta">(R1 × R8) + (R2 × R6) + DÍA + MES + AÑO = CÓDIGO</p>
+                                <p class="panel-meta" style="margin-top:6px;">DÍA &nbsp;= el día que todo empezó</p>
+                                <p class="panel-meta">MES &nbsp;= el mes que todo empezó</p>
+                                <p class="panel-meta">AÑO &nbsp;= el año que todo empezó</p>
+                            </div>
+
+                            <div class="panel-input-line" id="alice-code-line">
+                                <label class="panel-prompt" for="mission02-code">ann@init:~$ enter_code &gt;&gt;</label>
+                                <input type="number" id="mission02-code" class="mission-input" placeholder="____" autocomplete="off">
+                            </div>
+                            <button class="mission-submit-btn" id="mission02-submit">[VERIFY_ALICE_PROTOCOL]</button>
+                            <p class="mission-result" id="mission02-result"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mission-row locked" data-mission="03">
