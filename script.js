@@ -288,7 +288,7 @@ function solveMission01(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission01-result');
-        result.textContent = '> DECRYPTION_SUCCESSFUL\n> Tu primer regalo está donde el agua hierve pero no se toma sola.\n> MISSION_02 — UNLOCKED';
+        result.textContent = '> DECRYPTION_SUCCESSFUL\n> Tu primer regalo ya te dije cual es.\n> MISSION_02 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
@@ -859,7 +859,7 @@ function solveMission05(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission05-result');
-        result.textContent = '> FELINE_SEARCH: COMPLETE\n> Revisa donde guardas tus marcadores de libros. Hay algo nuevo ahí.\n> MISSION_06 — UNLOCKED';
+        result.textContent = '> FELINE_SEARCH: COMPLETE\n> Los escritos se ven mas lindos en papel.\n> MISSION_06 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
