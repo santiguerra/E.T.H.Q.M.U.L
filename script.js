@@ -181,6 +181,8 @@ function checkAccess() {
                 initMission05();
                 initMission06();
                 initMission07();
+                initMission08();
+                initMission09();
                 applyStoredProgress();
                 updateProgressDisplay();
             }, 600);
@@ -257,6 +259,8 @@ function applyStoredProgress() {
     if (progress['05'] === 'solved') solveMission05(true);
     if (progress['06'] === 'solved') solveMission06(true);
     if (progress['07'] === 'solved') solveMission07(true);
+    if (progress['08'] === 'solved') solveMission08(true);
+    if (progress['09'] === 'solved') solveMission09(true);
 }
 
 function solveMission01(silent) {
@@ -342,7 +346,7 @@ function solveMission02(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission02-result');
-        result.textContent = '> ALICE_PROTOCOL: COMPLETE\n> Tu segundo regalo viene en camino. Espéralo.\n> MISSION_03 — UNLOCKED';
+        result.textContent = '> ALICE_PROTOCOL: COMPLETE\n> Tu segundo regalo requiere un barista.\n> MISSION_03 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
@@ -420,6 +424,203 @@ function initMission02() {
     codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
 }
 
+// --- Mission 09 ---
+const LAYER_ANSWERS = ['MI REINA', 'REDES NEURONALES DE GRAFOS', 'TOPO INQUIETO', 'COUNTER INTELLIGENCE'];
+
+function solveMission09(silent) {
+    const row09 = document.querySelector('.mission-row[data-mission="09"]');
+    const row10 = document.querySelector('.mission-row[data-mission="10"]');
+    const status09 = row09.querySelector('.mission-status');
+
+    row09.classList.remove('active');
+    row09.classList.add('solved');
+    status09.className = 'mission-status solved-status';
+    status09.innerHTML = 'DECRYPTED ✓';
+
+    if (row10) {
+        row10.classList.remove('locked');
+        row10.classList.add('active');
+        const status10 = row10.querySelector('.mission-status');
+        status10.className = 'mission-status initializing';
+        status10.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('layer04-result');
+        result.textContent = '> MASTER_DECRYPT: COMPLETE\n> TODAS LAS CAPAS VERIFICADAS\n> Tu noveno regalo es para descansar un poco.\n> MISSION_10 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['09'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission09() {
+    const layers = [
+        { inputId: 'layer01-input', btnId: 'layer01-btn', resultId: 'layer01-result', blockId: 'layer-block-01', nextBlockId: 'layer-block-02' },
+        { inputId: 'layer02-input', btnId: 'layer02-btn', resultId: 'layer02-result', blockId: 'layer-block-02', nextBlockId: 'layer-block-03' },
+        { inputId: 'layer03-input', btnId: 'layer03-btn', resultId: 'layer03-result', blockId: 'layer-block-03', nextBlockId: 'layer-block-04' },
+        { inputId: 'layer04-input', btnId: 'layer04-btn', resultId: 'layer04-result', blockId: 'layer-block-04', nextBlockId: null },
+    ];
+
+    layers.forEach(({ inputId, btnId, resultId, blockId, nextBlockId }, i) => {
+        const btn = document.getElementById(btnId);
+        const input = document.getElementById(inputId);
+        const resultEl = document.getElementById(resultId);
+        if (!btn || !input) return;
+
+        const verify = () => {
+            const answer = input.value.trim().toUpperCase();
+            if (!answer) return;
+
+            if (answer === LAYER_ANSWERS[i]) {
+                input.disabled = true;
+                btn.disabled = true;
+                btn.style.opacity = '0.4';
+                resultEl.textContent = '> LAYER_VERIFIED ✓';
+                resultEl.className = 'mission-result success show';
+
+                const block = document.getElementById(blockId);
+                if (block) block.classList.add('key-verified');
+
+                if (nextBlockId) {
+                    const next = document.getElementById(nextBlockId);
+                    if (next) next.classList.remove('key-locked');
+                } else {
+                    solveMission09(false);
+                }
+            } else {
+                resultEl.textContent = '> LAYER_REJECTED — INCORRECT DATA';
+                resultEl.className = 'mission-result fail show';
+                input.value = '';
+                setTimeout(() => { resultEl.classList.remove('show'); }, 2000);
+            }
+        };
+
+        btn.addEventListener('click', verify);
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') verify(); });
+    });
+}
+
+// --- Mission 08 ---
+const KEY01_ANSWER = 3;
+const KEY02_ANSWER = 67;
+const KEY03_ANSWER = 2038;
+const MISSION_08_CODE = '2108';
+
+function solveMission08(silent) {
+    const row08 = document.querySelector('.mission-row[data-mission="08"]');
+    const row09 = document.querySelector('.mission-row[data-mission="09"]');
+    const status08 = row08.querySelector('.mission-status');
+
+    row08.classList.remove('active');
+    row08.classList.add('solved');
+    status08.className = 'mission-status solved-status';
+    status08.innerHTML = 'DECRYPTED ✓';
+
+    if (row09) {
+        row09.classList.remove('locked');
+        row09.classList.add('active');
+        const status09 = row09.querySelector('.mission-status');
+        status09.className = 'mission-status initializing';
+        status09.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission08-result');
+        result.textContent = '> THREE_KEYS_PROTOCOL: COMPLETE\n> Tu octavo regalo viene en camino. Espéralo.\n> MISSION_09 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['08'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission08() {
+    const keys = [
+        { inputId: 'key01-input', btnId: 'key01-btn', resultId: 'key01-result', blockId: 'key-block-01', answer: KEY01_ANSWER, nextBlockId: 'key-block-02' },
+        { inputId: 'key02-input', btnId: 'key02-btn', resultId: 'key02-result', blockId: 'key-block-02', answer: KEY02_ANSWER, nextBlockId: 'key-block-03' },
+        { inputId: 'key03-input', btnId: 'key03-btn', resultId: 'key03-result', blockId: 'key-block-03', answer: KEY03_ANSWER, nextBlockId: 'key-block-final' },
+    ];
+
+    const verified = { key01: false, key02: false, key03: false };
+
+    const syncFinalInput = () => {
+        if (verified.key01 && verified.key02 && verified.key03) {
+            const sum = KEY01_ANSWER + KEY02_ANSWER + KEY03_ANSWER;
+            const finalInput = document.getElementById('mission08-input');
+            if (finalInput) finalInput.value = sum;
+        }
+    };
+
+    keys.forEach(({ inputId, btnId, resultId, blockId, answer, nextBlockId }, i) => {
+        const btn = document.getElementById(btnId);
+        const input = document.getElementById(inputId);
+        const resultEl = document.getElementById(resultId);
+        if (!btn || !input) return;
+
+        const verify = () => {
+            const val = parseInt(input.value, 10);
+            if (isNaN(val)) return;
+
+            if (val === answer) {
+                input.disabled = true;
+                btn.disabled = true;
+                btn.style.opacity = '0.4';
+                resultEl.textContent = '> KEY_VERIFIED ✓';
+                resultEl.className = 'mission-result success show';
+
+                const block = document.getElementById(blockId);
+                if (block) block.classList.add('key-verified');
+
+                const nextBlock = document.getElementById(nextBlockId);
+                if (nextBlock) nextBlock.classList.remove('key-locked');
+
+                verified[`key0${i + 1}`] = true;
+                syncFinalInput();
+            } else {
+                resultEl.textContent = '> KEY_REJECTED — INCORRECT VALUE';
+                resultEl.className = 'mission-result fail show';
+                input.value = '';
+                setTimeout(() => { resultEl.classList.remove('show'); }, 2000);
+            }
+        };
+
+        btn.addEventListener('click', verify);
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') verify(); });
+    });
+
+    const finalBtn = document.getElementById('mission08-submit');
+    const finalInput = document.getElementById('mission08-input');
+    if (!finalBtn || !finalInput) return;
+
+    const submitFinal = () => {
+        const val = String(finalInput.value).trim();
+        if (!val) return;
+        if (val === MISSION_08_CODE) {
+            finalInput.disabled = true;
+            finalBtn.disabled = true;
+            finalBtn.style.opacity = '0.4';
+            solveMission08(false);
+        } else {
+            const result = document.getElementById('mission08-result');
+            result.textContent = '> SUM_FAILED — INCORRECT TOTAL';
+            result.className = 'mission-result fail show';
+            finalInput.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    finalBtn.addEventListener('click', submitFinal);
+    finalInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitFinal(); });
+}
+
 // --- Mission 07 ---
 const MISSION_07_ANSWER = 'VIED';
 const LETTER_BLANKS_CORRECT = { 'blank-l1': 'vida', 'blank-l2': 'inteligente', 'blank-l3': 'exclusivamente', 'blank-l4': 'dormido' };
@@ -444,7 +645,7 @@ function solveMission07(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission07-result');
-        result.textContent = '> ENCRYPTED_LETTER: COMPLETE\n> Tu séptimo regalo viene en camino. Espéralo.\n> MISSION_08 — UNLOCKED';
+        result.textContent = '> ENCRYPTED_LETTER: COMPLETE\n> Así como tú le diste un nuevo brillo a mi vida, quiero que le des ese mismo brillo a este libro.\n> MISSION_08 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
@@ -646,7 +847,7 @@ function solveMission04(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission04-result');
-        result.textContent = '> CAFFENELLA_PROTOCOL: COMPLETE\n> Tu cuarto regalo viene en camino. Espéralo.\n> MISSION_05 — UNLOCKED';
+        result.textContent = '> CAFFENELLA_PROTOCOL: COMPLETE\n> Tu cuarto regalo te convierte en una asesina.\n> MISSION_05 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
@@ -707,7 +908,7 @@ function solveMission03(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission03-result');
-        result.textContent = '> FRAGMENT_ANALYSIS: COMPLETE\n> "Así como tú le diste un nuevo brillo a mi vida, quiero que le des ese mismo brillo a este libro."\n> Tu tercer regalo viene en camino. Espéralo.\n> MISSION_04 — UNLOCKED';
+        result.textContent = '> FRAGMENT_ANALYSIS: COMPLETE\n> Tu tercer regalo es con mucho amor y un poquito de tiempo.\n> MISSION_04 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
@@ -764,6 +965,7 @@ document.querySelectorAll('.mission-row').forEach(row => {
     const info = row.querySelector('.mission-info');
     if (!info) return;
     info.addEventListener('click', () => {
+        if (row.classList.contains('locked')) return;
         const isOpen = row.classList.contains('open');
         document.querySelectorAll('.mission-row.open').forEach(r => r.classList.remove('open'));
         if (!isOpen) row.classList.add('open');

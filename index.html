@@ -450,7 +450,77 @@
                         <span class="mission-id">MISSION_08</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-08">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-08">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_08 — THREE_KEYS_PROTOCOL</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">█████████</span><span class="bar-empty">░</span> EXTREME</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// WARNING: 3 INDEPENDENT KEYS REQUIRED</p>
+                            <p class="panel-hint">// SOLVE EACH. ADD THEM. ENTER THE SUM.</p>
+
+                            <!-- KEY 01 -->
+                            <div class="key-block" id="key-block-01">
+                                <p class="key-label">// KEY_01 — LOGIC_PUZZLE:</p>
+                                <p class="key-text">Un hombre entra a una habitación con 3 interruptores.<br>
+                                Cada interruptor controla una bombilla en otra habitación.<br>
+                                No puede ver las bombillas desde donde está.<br>
+                                Solo puede entrar a la habitación de las bombillas UNA vez.</p>
+                                <p class="key-question">¿Cuántas bombillas puede identificar correctamente?</p>
+                                <div class="panel-input-line">
+                                    <label class="panel-prompt" for="key01-input">KEY_01 &gt;&gt;</label>
+                                    <input type="number" id="key01-input" class="mission-input" style="width:80px" placeholder="__" autocomplete="off">
+                                </div>
+                                <button class="mission-submit-btn" id="key01-btn">[VERIFY_KEY_01]</button>
+                                <p class="mission-result" id="key01-result"></p>
+                            </div>
+
+                            <!-- KEY 02 -->
+                            <div class="key-block key-locked" id="key-block-02">
+                                <p class="key-label">// KEY_02 — VISUAL_DATA:</p>
+                                <p class="key-text">En algún momento él te mandó una foto.<br>
+                                En esa foto hay un número.<br>
+                                Ese número es la clave.</p>
+                                <div class="panel-input-line">
+                                    <label class="panel-prompt" for="key02-input">KEY_02 &gt;&gt;</label>
+                                    <input type="number" id="key02-input" class="mission-input" style="width:80px" placeholder="__" autocomplete="off">
+                                </div>
+                                <button class="mission-submit-btn" id="key02-btn">[VERIFY_KEY_02]</button>
+                                <p class="mission-result" id="key02-result"></p>
+                            </div>
+
+                            <!-- KEY 03 -->
+                            <div class="key-block key-locked" id="key-block-03">
+                                <p class="key-label">// KEY_03 — MATHEMATICAL_SEQUENCE:</p>
+                                <p class="key-text">X = año que empezaron a hablar<br>
+                                Y = día de tu cumpleaños<br>
+                                Z = mes de tu cumpleaños</p>
+                                <p class="key-question">X + Y + Z = ?</p>
+                                <div class="panel-input-line">
+                                    <label class="panel-prompt" for="key03-input">KEY_03 &gt;&gt;</label>
+                                    <input type="number" id="key03-input" class="mission-input" style="width:80px" placeholder="__" autocomplete="off">
+                                </div>
+                                <button class="mission-submit-btn" id="key03-btn">[VERIFY_KEY_03]</button>
+                                <p class="mission-result" id="key03-result"></p>
+                            </div>
+
+                            <!-- FINAL SUM -->
+                            <div class="key-block key-locked" id="key-block-final">
+                                <p class="panel-intercept">// ALL KEYS VERIFIED</p>
+                                <p class="panel-intercept">// SUMA: KEY_01 + KEY_02 + KEY_03</p>
+                                <p class="panel-meta">// FORMAT: número entero</p>
+                                <div class="panel-input-line" style="margin-top:12px">
+                                    <label class="panel-prompt" for="mission08-input">ann@init:~$ enter_sum &gt;&gt;</label>
+                                    <input type="number" id="mission08-input" class="mission-input" style="width:100px" placeholder="____" autocomplete="off">
+                                </div>
+                                <button class="mission-submit-btn" id="mission08-submit">[VERIFY_THREE_KEYS]</button>
+                                <p class="mission-result" id="mission08-result"></p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mission-row locked" data-mission="09">
@@ -458,7 +528,72 @@
                         <span class="mission-id">MISSION_09</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-09">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-09">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_09 — MASTER_DECRYPT</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">██████████</span> MAXIMUM</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// WARNING: MAXIMUM SECURITY PROTOCOL</p>
+                            <p class="panel-intercept">// 4 LAYERS DETECTED</p>
+                            <p class="panel-intercept">// EACH LAYER UNLOCKS THE NEXT</p>
+                            <p class="panel-hint">// NO SHORTCUTS. NO HINTS.</p>
+
+                            <div class="key-block" id="layer-block-01">
+                                <p class="key-label">// LAYER_01 — CAESAR_CIPHER:</p>
+                                <p class="key-text">// DESPLAZAMIENTO: DESCONOCIDO<br>
+                                // MENSAJE INTERCEPTADO:</p>
+                                <p class="panel-cipher">JF OBFKX</p>
+                                <p class="key-text">// Descifra el mensaje.</p>
+                                <div class="panel-input-line">
+                                    <label class="panel-prompt" for="layer01-input">LAYER_01 &gt;&gt;</label>
+                                    <input type="text" id="layer01-input" class="mission-input" placeholder="_________" autocomplete="off" spellcheck="false">
+                                </div>
+                                <button class="mission-submit-btn" id="layer01-btn">[VERIFY_LAYER_01]</button>
+                                <p class="mission-result" id="layer01-result"></p>
+                            </div>
+
+                            <div class="key-block key-locked" id="layer-block-02">
+                                <p class="key-label">// LAYER_02 — DOCUMENT_SEARCH:</p>
+                                <p class="key-text">// En algún momento él compartió contigo un documento.<br>
+                                // Busca la sección 3.0.4<br>
+                                // El título de esa sección es la respuesta.</p>
+                                <div class="panel-input-line">
+                                    <label class="panel-prompt" for="layer02-input">LAYER_02 &gt;&gt;</label>
+                                    <input type="text" id="layer02-input" class="mission-input" placeholder="_________" autocomplete="off" spellcheck="false">
+                                </div>
+                                <button class="mission-submit-btn" id="layer02-btn">[VERIFY_LAYER_02]</button>
+                                <p class="mission-result" id="layer02-result"></p>
+                            </div>
+
+                            <div class="key-block key-locked" id="layer-block-03">
+                                <p class="key-label">// LAYER_03 — NUMERIC_CODE:</p>
+                                <p class="key-text">// Cada número representa una letra (A=1, B=2, C=3...)<br>
+                                // Lee la secuencia al revés primero, luego convierte.</p>
+                                <p class="panel-cipher">15 20 5 9 21 17 14 9 15 16 15 20</p>
+                                <div class="panel-input-line">
+                                    <label class="panel-prompt" for="layer03-input">LAYER_03 &gt;&gt;</label>
+                                    <input type="text" id="layer03-input" class="mission-input" placeholder="_________" autocomplete="off" spellcheck="false">
+                                </div>
+                                <button class="mission-submit-btn" id="layer03-btn">[VERIFY_LAYER_03]</button>
+                                <p class="mission-result" id="layer03-result"></p>
+                            </div>
+
+                            <div class="key-block key-locked" id="layer-block-04">
+                                <p class="key-label">// LAYER_04 — PERSONAL_DATA:</p>
+                                <p class="key-text">// ¿Cómo se llama su mazo de Magic: The Gathering?</p>
+                                <div class="panel-input-line">
+                                    <label class="panel-prompt" for="layer04-input">LAYER_04 &gt;&gt;</label>
+                                    <input type="text" id="layer04-input" class="mission-input" placeholder="_________" autocomplete="off" spellcheck="false">
+                                </div>
+                                <button class="mission-submit-btn" id="layer04-btn">[VERIFY_LAYER_04]</button>
+                                <p class="mission-result" id="layer04-result"></p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mission-row locked" data-mission="10">
