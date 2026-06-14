@@ -601,7 +601,28 @@
                         <span class="mission-id">MISSION_10</span>
                         <span class="mission-status locked-status">LOCKED</span>
                     </div>
-                    <div class="mission-denied" id="panel-10">ACCESS DENIED — COMPLETE PREVIOUS MISSION</div>
+                    <div class="mission-panel" id="panel-10">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_10 — FINAL_SEQUENCE</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-empty">░░░░░░░░░░</span> —</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_CONFIRMATION</p>
+                        </div>
+                        <div class="panel-body">
+                            <div class="final-prompt" id="final-prompt">
+                                <p class="final-question">¿Estás lista?</p>
+                                <button class="final-yes-btn" id="final-yes-btn">[ SÍ ]</button>
+                            </div>
+                            <div class="final-message" id="final-message" style="display:none">
+                                <div id="final-text-output"></div>
+                                <div class="final-footer" id="final-footer" style="opacity:0">
+                                    <p class="final-footer-line">&gt; SUSHI BEEF — [FECHA] — [HORA]</p>
+                                    <p class="final-footer-line">&gt; MISSION_COMPLETE ✓</p>
+                                    <p class="final-footer-line">&gt; PROGRESS: 10/10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

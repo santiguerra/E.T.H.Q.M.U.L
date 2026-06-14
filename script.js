@@ -183,6 +183,7 @@ function checkAccess() {
                 initMission07();
                 initMission08();
                 initMission09();
+                initMission10();
                 applyStoredProgress();
                 updateProgressDisplay();
             }, 600);
@@ -261,6 +262,7 @@ function applyStoredProgress() {
     if (progress['07'] === 'solved') solveMission07(true);
     if (progress['08'] === 'solved') solveMission08(true);
     if (progress['09'] === 'solved') solveMission09(true);
+    if (progress['10'] === 'solved') solveMission10();
 }
 
 function solveMission01(silent) {
@@ -422,6 +424,67 @@ function initMission02() {
     });
 
     codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') verifyCode(); });
+}
+
+// --- Mission 10 ---
+const FINAL_MESSAGE = `Amor, este ya es el ultimo regalo de este jueguito para sacarte la rabia, pero el principal objetivo es sacarte una sonrisa por el tiempo que te demores resolviendo los puzzles. Quiero decirte que te amo mucho más de lo que te puedes imaginar, y que cada pista, cada acertijo y cada detalle de este recorrido los preparé pensando únicamente en ti. Sé que a veces los días se ponen pesados, que hay cosas que te frustran o que incluso yo puedo hacerte enojar, pero quiero ser siempre esa persona que te ayude a aligerar la carga y a cambiar un mal rato por un buen recuerdo.
+
+Eres mi persona favorita, mi refugio y mi mayor alegría. Espero de verdad que hayas disfrutado esta pequeña aventura y que este ultimo regalo te guste muchísimo. Ya puedes relajarte un poco, y dejar de pensar en cómo resolver el siguiente paso. Tu ultima tarea es ponerte bonita para esta noche y darme un beso, si es que me lo gané.
+
+Gracias por seguirme la corriente en mis locuras y por ser tan increíble.
+
+Te amo con todo mi corazón. Te espero en la noche para hacerte una pregunta muy importante.`;
+
+function solveMission10() {
+    const row10 = document.querySelector('.mission-row[data-mission="10"]');
+    const status10 = row10.querySelector('.mission-status');
+
+    row10.classList.remove('active');
+    row10.classList.add('solved');
+    status10.className = 'mission-status solved-status';
+    status10.innerHTML = 'DECRYPTED ✓';
+
+    const progress = getMissionProgress();
+    progress['10'] = 'solved';
+    saveMissionProgress(progress);
+    updateProgressDisplay();
+}
+
+function typewriterEffect(text, el, onDone) {
+    let i = 0;
+    const speed = 18;
+    const tick = () => {
+        if (i < text.length) {
+            el.textContent += text[i];
+            i++;
+            setTimeout(tick, speed);
+        } else if (onDone) {
+            onDone();
+        }
+    };
+    tick();
+}
+
+function initMission10() {
+    const btn = document.getElementById('final-yes-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+        const prompt = document.getElementById('final-prompt');
+        const message = document.getElementById('final-message');
+        const output = document.getElementById('final-text-output');
+        const footer = document.getElementById('final-footer');
+
+        prompt.style.display = 'none';
+        message.style.display = 'block';
+
+        typewriterEffect(FINAL_MESSAGE, output, () => {
+            setTimeout(() => {
+                footer.style.opacity = '1';
+                solveMission10();
+            }, 600);
+        });
+    });
 }
 
 // --- Mission 09 ---
