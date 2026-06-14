@@ -1036,6 +1036,85 @@ body {
     opacity: 0.7;
 }
 
+/* Progress bar sweep on completion */
+@keyframes progress-sweep {
+    0%   { text-shadow: -40px 0 8px transparent, 0 0 4px var(--rusty-gold); }
+    50%  { text-shadow: 0 0 18px var(--rusty-gold), 4px 0 30px #ffd700; }
+    100% { text-shadow: 40px 0 8px transparent, 0 0 4px var(--rusty-gold); }
+}
+
+#progress-filled.sweep {
+    animation: progress-sweep 1.8s ease forwards;
+}
+
+/* Puzzle complete transformation */
+body.puzzle-complete {
+    background: radial-gradient(ellipse at center, #2d0015 0%, #0d0005 100%);
+    transition: background 1.5s ease;
+}
+
+body.puzzle-complete .background-container {
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#dashboard.puzzle-complete {
+    transition: background 1.5s ease;
+}
+
+#dashboard.puzzle-complete .dashboard-inner {
+    background: #2d0015;
+    border-color: #c9a84c;
+    box-shadow: 0 0 50px rgba(201, 168, 76, 0.3), inset 0 0 30px rgba(45, 0, 21, 0.6);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 2 L38 20 L20 38 L2 20 Z' fill='none' stroke='rgba(201,168,76,0.05)' stroke-width='1'/%3E%3Ccircle cx='20' cy='20' r='2' fill='rgba(201,168,76,0.05)'/%3E%3C/svg%3E");
+    transition: all 1.5s ease;
+}
+
+#dashboard.puzzle-complete .dashboard-header {
+    color: #f2c4ce;
+    opacity: 1;
+    border-bottom-color: #c9a84c;
+    text-shadow: 0 0 10px rgba(242, 196, 206, 0.7);
+    font-family: Georgia, serif;
+    transition: all 1.5s ease;
+}
+
+#dashboard.puzzle-complete .dashboard-progress,
+#dashboard.puzzle-complete #progress-filled,
+#dashboard.puzzle-complete #progress-count {
+    color: #c9a84c;
+    text-shadow: 0 0 8px rgba(201, 168, 76, 0.6);
+    transition: all 1.5s ease;
+}
+
+#dashboard.puzzle-complete .panel-title,
+#dashboard.puzzle-complete .mission-id {
+    font-family: Georgia, serif;
+    transition: all 1.5s ease;
+}
+
+#dashboard.puzzle-complete .mission-row {
+    border-color: rgba(201, 168, 76, 0.4);
+    box-shadow: 0 0 6px rgba(201, 168, 76, 0.1);
+    transition: all 1.5s ease;
+}
+
+#dashboard.puzzle-complete .mission-row.solved .mission-id {
+    color: #f2c4ce;
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(242, 196, 206, 0.6);
+}
+
+#dashboard.puzzle-complete .mission-status.solved-status {
+    color: #c9a84c;
+}
+
+#dashboard.puzzle-complete .dashboard-log {
+    color: #f2c4ce;
+    opacity: 1;
+    transition: all 1.5s ease;
+}
+
 /* Progress bar */
 .dashboard-progress {
     font-size: 0.85rem;

@@ -249,6 +249,9 @@ function updateProgressDisplay() {
     filled.textContent = '█'.repeat(solved);
     empty.textContent = '░'.repeat(10 - solved);
     count.textContent = `${solved}/10`;
+    if (solved === 10) {
+        filled.classList.add('sweep');
+    }
 }
 
 function applyStoredProgress() {
@@ -448,11 +451,18 @@ function solveMission10() {
     progress['10'] = 'solved';
     saveMissionProgress(progress);
     updateProgressDisplay();
+
+    setTimeout(() => {
+        document.getElementById('dashboard').classList.add('puzzle-complete');
+        document.body.classList.add('puzzle-complete');
+        const header = document.querySelector('.dashboard-header span:nth-child(2)');
+        if (header) header.textContent = '// SYSTEM_LIBERATED // ann@init:~$ mission_complete // ❤️ 10/10';
+    }, 2000);
 }
 
 function typewriterEffect(text, el, onDone) {
     let i = 0;
-    const speed = 18;
+    const speed = 50;
     const tick = () => {
         if (i < text.length) {
             el.textContent += text[i];
