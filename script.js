@@ -897,69 +897,8 @@ function initMission05() {
     input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
 }
 
-// --- Mission 04 ---
-const MISSION_04_ANSWER = 'TE AMO';
-
-function solveMission04(silent) {
-    const row04 = document.querySelector('.mission-row[data-mission="04"]');
-    const row05 = document.querySelector('.mission-row[data-mission="05"]');
-    const status04 = row04.querySelector('.mission-status');
-
-    row04.classList.remove('active');
-    row04.classList.add('solved');
-    status04.className = 'mission-status solved-status';
-    status04.innerHTML = 'DECRYPTED ✓';
-
-    if (row05) {
-        row05.classList.remove('locked');
-        row05.classList.add('active');
-        const status05 = row05.querySelector('.mission-status');
-        status05.className = 'mission-status initializing';
-        status05.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
-    }
-
-    if (!silent) {
-        const result = document.getElementById('mission04-result');
-        result.textContent = '> CAFFENELLA_PROTOCOL: COMPLETE\n> Tu cuarto regalo te convierte en una asesina.\n> MISSION_05 — UNLOCKED';
-        result.className = 'mission-result success show';
-
-        const progress = getMissionProgress();
-        progress['04'] = 'solved';
-        saveMissionProgress(progress);
-    }
-
-    updateProgressDisplay();
-}
-
-function initMission04() {
-    const btn = document.getElementById('mission04-submit');
-    const input = document.getElementById('mission04-input');
-    if (!btn || !input) return;
-
-    const submit = () => {
-        const answer = input.value.trim().toUpperCase();
-        if (!answer) return;
-
-        if (answer === MISSION_04_ANSWER) {
-            input.disabled = true;
-            btn.disabled = true;
-            btn.style.opacity = '0.4';
-            solveMission04(false);
-        } else {
-            const result = document.getElementById('mission04-result');
-            result.textContent = '> DECRYPTION_FAILED — INVALID MESSAGE';
-            result.className = 'mission-result fail show';
-            input.value = '';
-            setTimeout(() => { result.classList.remove('show'); }, 2000);
-        }
-    };
-
-    btn.addEventListener('click', submit);
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
-}
-
 // --- Mission 03 ---
-const MISSION_03_ANSWER = 'ABRIGO DEFECTOS';
+const MISSION_03_ANSWER = 'TE AMO';
 
 function solveMission03(silent) {
     const row03 = document.querySelector('.mission-row[data-mission="03"]');
@@ -981,7 +920,7 @@ function solveMission03(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission03-result');
-        result.textContent = '> FRAGMENT_ANALYSIS: COMPLETE\n> Tu tercer regalo es con mucho amor y un poquito de tiempo.\n> MISSION_04 — UNLOCKED';
+        result.textContent = '> CAFFENELLA_PROTOCOL: COMPLETE\n> Tu tercer regalo es con mucho amor y un poquito de tiempo.\n> MISSION_04 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
@@ -994,7 +933,68 @@ function solveMission03(silent) {
 
 function initMission03() {
     const btn = document.getElementById('mission03-submit');
-    const finalInput = document.getElementById('mission03-input');
+    const input = document.getElementById('mission03-input');
+    if (!btn || !input) return;
+
+    const submit = () => {
+        const answer = input.value.trim().toUpperCase();
+        if (!answer) return;
+
+        if (answer === MISSION_03_ANSWER) {
+            input.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.4';
+            solveMission03(false);
+        } else {
+            const result = document.getElementById('mission03-result');
+            result.textContent = '> DECRYPTION_FAILED — INVALID MESSAGE';
+            result.className = 'mission-result fail show';
+            input.value = '';
+            setTimeout(() => { result.classList.remove('show'); }, 2000);
+        }
+    };
+
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+}
+
+// --- Mission 04 ---
+const MISSION_04_ANSWER = 'ABRIGO DEFECTOS';
+
+function solveMission04(silent) {
+    const row04 = document.querySelector('.mission-row[data-mission="04"]');
+    const row05 = document.querySelector('.mission-row[data-mission="05"]');
+    const status04 = row04.querySelector('.mission-status');
+
+    row04.classList.remove('active');
+    row04.classList.add('solved');
+    status04.className = 'mission-status solved-status';
+    status04.innerHTML = 'DECRYPTED ✓';
+
+    if (row05) {
+        row05.classList.remove('locked');
+        row05.classList.add('active');
+        const status05 = row05.querySelector('.mission-status');
+        status05.className = 'mission-status initializing';
+        status05.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+    }
+
+    if (!silent) {
+        const result = document.getElementById('mission04-result');
+        result.textContent = '> FRAGMENT_ANALYSIS: COMPLETE\n> Tu cuarto regalo te convierte en una asesina.\n> MISSION_05 — UNLOCKED';
+        result.className = 'mission-result success show';
+
+        const progress = getMissionProgress();
+        progress['04'] = 'solved';
+        saveMissionProgress(progress);
+    }
+
+    updateProgressDisplay();
+}
+
+function initMission04() {
+    const btn = document.getElementById('mission04-submit');
+    const finalInput = document.getElementById('mission04-input');
     const blankB = document.getElementById('blank-b');
     const blankE = document.getElementById('blank-e');
     if (!btn || !finalInput) return;
@@ -1013,15 +1013,15 @@ function initMission03() {
         const answer = finalInput.value.trim().toUpperCase();
         if (!answer) return;
 
-        if (answer === MISSION_03_ANSWER) {
+        if (answer === MISSION_04_ANSWER) {
             finalInput.disabled = true;
             btn.disabled = true;
             btn.style.opacity = '0.4';
             if (blankB) blankB.disabled = true;
             if (blankE) blankE.disabled = true;
-            solveMission03(false);
+            solveMission04(false);
         } else {
-            const result = document.getElementById('mission03-result');
+            const result = document.getElementById('mission04-result');
             result.textContent = '> VERIFICATION_FAILED — INCORRECT PASSPHRASE';
             result.className = 'mission-result fail show';
             finalInput.value = '';

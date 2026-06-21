@@ -185,7 +185,49 @@
                     </div>
                     <div class="mission-panel" id="panel-03">
                         <div class="panel-header">
-                            <p class="panel-title">MISSION_03 — FRAGMENT ANALYSIS</p>
+                            <p class="panel-title">MISSION_03 — CAFFENELLA_PROTOCOL</p>
+                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">████████</span><span class="bar-empty">░░</span> HIGH</p>
+                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
+                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
+                        </div>
+                        <div class="panel-body">
+                            <p class="panel-intercept">// DATA_SOURCE: CLASSIFIED_PRESENTATION</p>
+                            <p class="panel-intercept">// WARNING: LOS DATOS ESTÁN FRENTE A TI</p>
+                            <p class="panel-hint">// Busca los 5 bloques binarios escondidos en la presentación de Caffenella.</p>
+                            <p class="panel-hint">// Convierte cada bloque: BINARIO → DECIMAL → ASCII → LETRA</p>
+                            <p class="panel-hint">// Las 5 letras en orden forman la respuesta.</p>
+
+                            <div class="ascii-table">
+                                <p class="panel-intercept">// ASCII_REFERENCE:</p>
+                                <p class="ascii-row">// 65=A &nbsp; 66=B &nbsp; 67=C &nbsp; 68=D &nbsp; 69=E &nbsp; 70=F &nbsp; 71=G &nbsp; 72=H</p>
+                                <p class="ascii-row">// 73=I &nbsp; 74=J &nbsp; 75=K &nbsp; 76=L &nbsp; 77=M &nbsp; 78=N &nbsp; 79=O &nbsp; 80=P</p>
+                                <p class="ascii-row">// 81=Q &nbsp; 82=R &nbsp; 83=S &nbsp; 84=T &nbsp; 85=U &nbsp; 86=V &nbsp; 87=W &nbsp; 88=X</p>
+                                <p class="ascii-row">// 89=Y &nbsp; 90=Z</p>
+                            </div>
+
+                            <div class="alice-formula">
+                                <p class="panel-intercept">// EJEMPLO:</p>
+                                <p class="panel-meta">// 01001000 → 72 → H</p>
+                            </div>
+
+                            <div class="panel-input-line">
+                                <label class="panel-prompt" for="mission03-input">ann@init:~$ enter_decoded_message &gt;&gt;</label>
+                                <input type="text" id="mission03-input" class="mission-input" placeholder="___________" autocomplete="off" spellcheck="false">
+                            </div>
+                            <button class="mission-submit-btn" id="mission03-submit">[VERIFY_CAFFENELLA]</button>
+                            <p class="mission-result" id="mission03-result"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mission-row locked" data-mission="04">
+                    <div class="mission-info">
+                        <span class="mission-id">MISSION_04</span>
+                        <span class="mission-status locked-status">LOCKED</span>
+                    </div>
+                    <div class="mission-panel" id="panel-04">
+                        <div class="panel-header">
+                            <p class="panel-title">MISSION_04 — FRAGMENT ANALYSIS</p>
                             <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">█████████</span><span class="bar-empty">░</span> EXTREME</p>
                             <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
                             <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
@@ -256,52 +298,10 @@
                             </div>
 
                             <div class="panel-input-line">
-                                <label class="panel-prompt" for="mission03-input">ann@init:~$ enter_passphrase &gt;&gt;</label>
-                                <input type="text" id="mission03-input" class="mission-input" placeholder="___________" autocomplete="off" spellcheck="false">
-                            </div>
-                            <button class="mission-submit-btn" id="mission03-submit">[VERIFY_FRAGMENTS]</button>
-                            <p class="mission-result" id="mission03-result"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mission-row locked" data-mission="04">
-                    <div class="mission-info">
-                        <span class="mission-id">MISSION_04</span>
-                        <span class="mission-status locked-status">LOCKED</span>
-                    </div>
-                    <div class="mission-panel" id="panel-04">
-                        <div class="panel-header">
-                            <p class="panel-title">MISSION_04 — CAFFENELLA_PROTOCOL</p>
-                            <p class="panel-meta">&gt; DIFFICULTY: <span class="bar-filled">████████</span><span class="bar-empty">░░</span> HIGH</p>
-                            <p class="panel-meta">&gt; ESTIMATED_TIME: UNKNOWN</p>
-                            <p class="panel-meta">&gt; STATUS: AWAITING_RESPONSE</p>
-                        </div>
-                        <div class="panel-body">
-                            <p class="panel-intercept">// DATA_SOURCE: CLASSIFIED_PRESENTATION</p>
-                            <p class="panel-intercept">// WARNING: LOS DATOS ESTÁN FRENTE A TI</p>
-                            <p class="panel-hint">// Busca los 5 bloques binarios escondidos en la presentación de Caffenella.</p>
-                            <p class="panel-hint">// Convierte cada bloque: BINARIO → DECIMAL → ASCII → LETRA</p>
-                            <p class="panel-hint">// Las 5 letras en orden forman la respuesta.</p>
-
-                            <div class="ascii-table">
-                                <p class="panel-intercept">// ASCII_REFERENCE:</p>
-                                <p class="ascii-row">// 65=A &nbsp; 66=B &nbsp; 67=C &nbsp; 68=D &nbsp; 69=E &nbsp; 70=F &nbsp; 71=G &nbsp; 72=H</p>
-                                <p class="ascii-row">// 73=I &nbsp; 74=J &nbsp; 75=K &nbsp; 76=L &nbsp; 77=M &nbsp; 78=N &nbsp; 79=O &nbsp; 80=P</p>
-                                <p class="ascii-row">// 81=Q &nbsp; 82=R &nbsp; 83=S &nbsp; 84=T &nbsp; 85=U &nbsp; 86=V &nbsp; 87=W &nbsp; 88=X</p>
-                                <p class="ascii-row">// 89=Y &nbsp; 90=Z</p>
-                            </div>
-
-                            <div class="alice-formula">
-                                <p class="panel-intercept">// EJEMPLO:</p>
-                                <p class="panel-meta">// 01001000 → 72 → H</p>
-                            </div>
-
-                            <div class="panel-input-line">
-                                <label class="panel-prompt" for="mission04-input">ann@init:~$ enter_decoded_message &gt;&gt;</label>
+                                <label class="panel-prompt" for="mission04-input">ann@init:~$ enter_passphrase &gt;&gt;</label>
                                 <input type="text" id="mission04-input" class="mission-input" placeholder="___________" autocomplete="off" spellcheck="false">
                             </div>
-                            <button class="mission-submit-btn" id="mission04-submit">[VERIFY_CAFFENELLA]</button>
+                            <button class="mission-submit-btn" id="mission04-submit">[VERIFY_FRAGMENTS]</button>
                             <p class="mission-result" id="mission04-result"></p>
                         </div>
                     </div>
