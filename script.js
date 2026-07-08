@@ -873,34 +873,70 @@ function solveMission05(silent) {
 function initMission05() {
     const btn = document.getElementById('mission05-submit');
     const input = document.getElementById('mission05-input');
+    const panel = document.getElementById('panel-05');
+    const denied = document.getElementById('denied-05');
     if (!btn || !input) return;
 
     const checkLock = () => {
         const now = new Date();
-        const unlockDate = new Date('2026-07-11T00:00:00');
+        const unlockDate = new Date('2026-07-12T00:00:00');
         return now < unlockDate;
     };
+
+    let countdownInterval = null;
 
     if (checkLock()) {
         input.disabled = true;
         btn.disabled = true;
         btn.style.opacity = '0.4';
-        const result = document.getElementById('mission05-result');
-        if (result) {
-            result.textContent = '> MISSION_LOCKED — DISPONIBLE EL SÁBADO 11 DE JULIO';
-            result.className = 'mission-result fail show';
+        
+        if (panel) panel.style.display = 'none';
+        if (denied) denied.style.display = 'block';
+
+        const timerEl = document.getElementById('countdown-timer-05');
+        if (timerEl) {
+            const updateTimer = () => {
+                const now = new Date();
+                const unlockDate = new Date('2026-07-12T00:00:00');
+                const diff = unlockDate - now;
+
+                if (diff <= 0) {
+                    clearInterval(countdownInterval);
+                    if (panel) panel.style.display = '';
+                    if (denied) denied.style.display = 'none';
+                    
+                    const row05 = document.querySelector('.mission-row[data-mission="05"]');
+                    if (row05 && row05.classList.contains('active')) {
+                        const status05 = row05.querySelector('.mission-status');
+                        status05.className = 'mission-status initializing';
+                        status05.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+                    }
+                    
+                    input.disabled = false;
+                    btn.disabled = false;
+                    btn.style.opacity = '';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                const pad = (num) => String(num).padStart(2, '0');
+                timerEl.textContent = `DESBLOQUEO EN: ${pad(days)}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+            };
+
+            updateTimer();
+            countdownInterval = setInterval(updateTimer, 1000);
         }
+    } else {
+        if (panel) panel.style.display = '';
+        if (denied) denied.style.display = 'none';
     }
 
     const submit = () => {
-        if (checkLock()) {
-            const result = document.getElementById('mission05-result');
-            if (result) {
-                result.textContent = '> MISSION_LOCKED — DISPONIBLE EL SÁBADO 11 DE JULIO';
-                result.className = 'mission-result fail show';
-            }
-            return;
-        }
+        if (checkLock()) return;
         const answer = input.value.trim().toUpperCase();
         if (!answer) return;
 
@@ -1001,10 +1037,10 @@ function solveMission04(silent) {
         row05.classList.add('active');
         const status05 = row05.querySelector('.mission-status');
         const now = new Date();
-        const unlockDate = new Date('2026-07-11T00:00:00');
+        const unlockDate = new Date('2026-07-12T00:00:00');
         if (now < unlockDate) {
             status05.className = 'mission-status locked-status';
-            status05.innerHTML = 'LOCKED UNTIL JUL 11';
+            status05.innerHTML = 'LOCKED UNTIL JUL 12';
         } else {
             status05.className = 'mission-status initializing';
             status05.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
