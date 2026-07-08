@@ -875,7 +875,32 @@ function initMission05() {
     const input = document.getElementById('mission05-input');
     if (!btn || !input) return;
 
+    const checkLock = () => {
+        const now = new Date();
+        const unlockDate = new Date('2026-07-11T00:00:00');
+        return now < unlockDate;
+    };
+
+    if (checkLock()) {
+        input.disabled = true;
+        btn.disabled = true;
+        btn.style.opacity = '0.4';
+        const result = document.getElementById('mission05-result');
+        if (result) {
+            result.textContent = '> MISSION_LOCKED — DISPONIBLE EL SÁBADO 11 DE JULIO';
+            result.className = 'mission-result fail show';
+        }
+    }
+
     const submit = () => {
+        if (checkLock()) {
+            const result = document.getElementById('mission05-result');
+            if (result) {
+                result.textContent = '> MISSION_LOCKED — DISPONIBLE EL SÁBADO 11 DE JULIO';
+                result.className = 'mission-result fail show';
+            }
+            return;
+        }
         const answer = input.value.trim().toUpperCase();
         if (!answer) return;
 
@@ -975,8 +1000,15 @@ function solveMission04(silent) {
         row05.classList.remove('locked');
         row05.classList.add('active');
         const status05 = row05.querySelector('.mission-status');
-        status05.className = 'mission-status initializing';
-        status05.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+        const now = new Date();
+        const unlockDate = new Date('2026-07-11T00:00:00');
+        if (now < unlockDate) {
+            status05.className = 'mission-status locked-status';
+            status05.innerHTML = 'LOCKED UNTIL JUL 11';
+        } else {
+            status05.className = 'mission-status initializing';
+            status05.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+        }
     }
 
     if (!silent) {
