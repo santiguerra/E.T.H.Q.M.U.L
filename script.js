@@ -859,7 +859,7 @@ function solveMission05(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission05-result');
-        result.textContent = '> FELINE_SEARCH: COMPLETE\n> Los escritos se ven mas lindos en papel.\n> MISSION_06 — UNLOCKED';
+        result.textContent = '> FELINE_SEARCH: COMPLETE\n> Unos _____ para mi ______.\n> MISSION_06 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
