@@ -520,14 +520,14 @@ function solveMission09(silent) {
 
     if (!silent) {
         const result = document.getElementById('layer04-result');
-        result.textContent = '> MASTER_DECRYPT: COMPLETE\n> TODAS LAS CAPAS VERIFICADAS\n> Tu noveno regalo es para descansar un poco.\n> MISSION_10 — UNLOCKED';
+        result.textContent = '> MASTER_DECRYPT: COMPLETE\n> TODAS LAS CAPAS VERIFICADAS\n> Así como tú le diste un nuevo brillo a mi vida, quiero que le des ese mismo brillo a este libro.\n> MISSION_10 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
         progress['09'] = 'solved';
         saveMissionProgress(progress);
     }
-
+``
     updateProgressDisplay();
 }
 
@@ -718,7 +718,7 @@ function solveMission07(silent) {
 
     if (!silent) {
         const result = document.getElementById('mission07-result');
-        result.textContent = '> ENCRYPTED_LETTER: COMPLETE\n> Así como tú le diste un nuevo brillo a mi vida, quiero que le des ese mismo brillo a este libro.\n> MISSION_08 — UNLOCKED';
+        result.textContent = '> ENCRYPTED_LETTER: COMPLETE\n> Tu regalo, en camino.\n> MISSION_08 — UNLOCKED';
         result.className = 'mission-result success show';
 
         const progress = getMissionProgress();
