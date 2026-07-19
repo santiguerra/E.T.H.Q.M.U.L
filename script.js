@@ -515,7 +515,7 @@ function solveMission09(silent) {
         row10.classList.add('active');
         const status10 = row10.querySelector('.mission-status');
         status10.className = 'mission-status initializing';
-        status10.innerHTML = 'INITIALIZING...<span class="dashboard-cursor">_</span>';
+        status10.innerHTML = 'COMING SOON...';
     }
 
     if (!silent) {
@@ -527,7 +527,7 @@ function solveMission09(silent) {
         progress['09'] = 'solved';
         saveMissionProgress(progress);
     }
-``
+
     updateProgressDisplay();
 }
 
